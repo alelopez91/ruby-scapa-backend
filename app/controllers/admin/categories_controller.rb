@@ -1,7 +1,7 @@
 module Admin
   class CategoriesController < BaseController
     def index
-      categories = Category.all
+      categories = Category.ordered_by_description
 
       render_successful_response(categories, CategorySerializer)
     end
