@@ -10,6 +10,10 @@ module Admin
       render status: :bad_request
     end
 
+    def render_unprocessable_entity
+      render status: :unprocessable_entity
+    end
+
     def render_successful_response(object, serializer)
       serialized_object = serializer.new(object).serializable_hash.to_json
 
