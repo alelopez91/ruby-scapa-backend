@@ -1,9 +1,17 @@
 module Admin
   class CategoriesController < BaseController
     def index
-      @categories = Category.all
+      categories = Category.all
 
-      render json: @categories, status: :ok
+      render_successful_response(categories, CategorySerializer)
+    end
+
+    def show
+      category = Category.find(params[:id])
+
+      render_successful_response(category, CategorySerializer)
+    rescue ActiveRecord::RecordNotFound
+      render_not_found
     end
   end
 end
