@@ -1,7 +1,7 @@
 module Admin
   class PictogramsController < BaseController
     def index
-      pictograms = Pictogram.ordered_by_description
+      pictograms = Pictogram.ordered_by_description.page(params[:page]).per(params[:per_page])
 
       render_successful_response(pictograms, PictogramSerializer)
     end

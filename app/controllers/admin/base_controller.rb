@@ -15,9 +15,13 @@ module Admin
     end
 
     def render_successful_response(object, serializer)
-      serialized_object = serializer.new(object).serializable_hash.to_json
+      serialized_object = serialize_object(object, serializer)
 
       render json: serialized_object, status: :ok
+    end
+
+    def serialize_object(object, serializer)
+      serializer.new(object).serializable_hash.to_json
     end
   end
 end
