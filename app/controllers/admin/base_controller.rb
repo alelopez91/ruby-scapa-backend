@@ -21,7 +21,31 @@ module Admin
     end
 
     def serialize_object(object, serializer)
-      serializer.new(object).serializable_hash.to_json
+      extra_data = add_pagination_data(object)
+
+      serializer.new(object, extra_data).serializable_hash.to_json
+    end
+
+    def add_pagination_data(object)
+      extra_data = {}
+
+      if is_a_collection?(object)
+        extra_data[:meta] = {
+          limit_value: object.limit_value,
+          total_pages: object.total_pages,
+          current_page: object.current_page,
+          next_page: object.next_page,
+          prev_page: object.prev_page,
+          is_first_page: object.first_page?,
+          is_last_page: object.last_page?
+        }
+      end
+
+      extra_data
+    end
+
+    def is_a_collection?(object)
+      object.is_a?(ActiveRecord::Relation)
     end
   end
 end
