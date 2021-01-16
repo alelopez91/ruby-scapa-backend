@@ -7,17 +7,15 @@ module Admin
     end
 
     def show
-      category = Category.find(params[:id])
-
       render_successful_response(category, CategorySerializer)
     rescue ActiveRecord::RecordNotFound
       render_not_found
     end
 
     def create
-      category = Category.create!(category_params)
+      new_category = Category.create!(category_params)
 
-      render_successful_response(category, CategorySerializer)
+      render_successful_response(new_category, CategorySerializer)
     rescue ActionController::ParameterMissing
       render_bad_request
     rescue ActiveRecord::RecordInvalid
@@ -25,8 +23,6 @@ module Admin
     end
 
     def update
-      category = Category.find(params[:id])
-
       category.update!(category_params)
 
       render_successful_response(category, CategorySerializer)
@@ -37,8 +33,6 @@ module Admin
     end
 
     def destroy
-      category = Category.find(params[:id])
-
       category.destroy!
 
       render_successful_response(category, CategorySerializer)
@@ -50,6 +44,10 @@ module Admin
 
     def category_params
       params.require(:category).permit(:description)
+    end
+
+    def category
+      @category ||= Category.find(params[:id])
     end
   end
 end
