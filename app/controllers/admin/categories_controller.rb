@@ -36,6 +36,16 @@ module Admin
       render_unprocessable_entity
     end
 
+    def destroy
+      category = Category.find(params[:id])
+
+      category.destroy!
+
+      render_successful_response(category, CategorySerializer)
+    rescue ActiveRecord::RecordNotFound
+      render_not_found
+    end
+
     private
 
     def category_params
