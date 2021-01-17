@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_17_052030) do
+ActiveRecord::Schema.define(version: 2021_01_17_071759) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,12 +51,27 @@ ActiveRecord::Schema.define(version: 2021_01_17_052030) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "pictogram_routines", force: :cascade do |t|
+    t.bigint "pictogram_id", null: false
+    t.bigint "routine_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["pictogram_id"], name: "index_pictogram_routines_on_pictogram_id"
+    t.index ["routine_id"], name: "index_pictogram_routines_on_routine_id"
+  end
+
   create_table "pictograms", force: :cascade do |t|
     t.string "description"
     t.bigint "category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_id"], name: "index_pictograms_on_category_id"
+  end
+
+  create_table "routines", force: :cascade do |t|
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -89,5 +104,7 @@ ActiveRecord::Schema.define(version: 2021_01_17_052030) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "pictogram_routines", "pictograms"
+  add_foreign_key "pictogram_routines", "routines"
   add_foreign_key "pictograms", "categories"
 end
