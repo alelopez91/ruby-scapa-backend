@@ -11,6 +11,11 @@ AdminUser.find_or_create_by(email: 'admin@scapa.com.ar') do |user|
   user.password_confirmation = 'asdqwe123'
 end
 
+User.find_or_create_by(email: 'user@scapa.com.ar') do |user|
+  user.password = 'asdqwe123'
+  user.password_confirmation = 'asdqwe123'
+end
+
 categories = [ 'Abecedario', 'Acciones', 'Acontecimientos', 'Adjetivos', 'Adverbios', 'Alimentación', 'Animales', 'Aragón',
   'Casa', 'Colegio', 'Colores', 'Conceptos', 'Conjunciones', 'Cuerpo', 'Discapacidad', 'Entorno', 'Fórmulas cortesía', 'Formas',
   'Herramientas', 'Instrumentos', 'Interjecciones', 'Juegos', 'Juguetes', 'Lugares', 'Materiales', 'Medios de Comunicación',
