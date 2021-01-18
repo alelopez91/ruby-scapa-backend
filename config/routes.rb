@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
 
   namespace :v1 do
-    resources :categories
-    resources :pictograms
+    resources :categories, only: [:index]
+    resources :pictograms, only: [:index]
   end
 end
