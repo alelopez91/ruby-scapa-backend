@@ -23,6 +23,8 @@ module Admin
     end
 
     def update
+      routine.pictograms.destroy_all if routine_params[:pictogram_ids].present?
+
       routine.update!(routine_params)
 
       render_successful_response(routine, RoutineSerializer)
@@ -43,7 +45,7 @@ module Admin
     private
 
     def routine_params
-      params.require(:routine).permit(:description, :pictogram_ids)
+      params.require(:routine).permit(:description, pictogram_ids: [])
     end
 
     def routine
