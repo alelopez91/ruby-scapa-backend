@@ -1,7 +1,7 @@
-class Category < ApplicationRecord
+class CustomCategory < ApplicationRecord
   validates :description, presence: true
 
-  has_many :pictograms, dependent: :destroy
+  belongs_to :folder
 
   scope :ordered_by_description, -> { order(description: :asc) }
 end

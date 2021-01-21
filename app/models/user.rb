@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
 
   has_one :folder
 
+  has_many :custom_categories, through: :folder
+
   after_create :create_folder
 
   private
