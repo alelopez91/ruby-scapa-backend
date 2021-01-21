@@ -13,5 +13,6 @@ Rails.application.routes.draw do
     resources :pictograms, only: [:index]
     resource :folder, only: [:show, :update]
     resources :custom_categories
+    resources :custom_pictograms
   end
 end
