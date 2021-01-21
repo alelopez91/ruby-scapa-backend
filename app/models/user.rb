@@ -12,6 +12,6 @@ class User < ActiveRecord::Base
   private
 
   def create_folder
-    self.create_folder
+    self.create_folder!
   end
 end
