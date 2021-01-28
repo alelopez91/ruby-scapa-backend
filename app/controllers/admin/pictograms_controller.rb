@@ -3,7 +3,7 @@ module Admin
     has_scope :by_category, only: :index, as: :category_id
 
     def index
-      pictograms = apply_scopes(Pictogram).ordered_by_description.page(params[:page]).per(params[:per_page])
+      pictograms = retrieve_pictograms
 
       render_successful_response(pictograms, PictogramSerializer)
     end
@@ -15,7 +15,9 @@ module Admin
     end
 
     def create
-      new_pictogram = Pictogram.create!(pictogram_params)
+      completed_params = pictogram_params.merge!(classifiable_type: 'Category')
+
+      new_pictogram = Pictogram.create!(completed_params)
 
       render_successful_response(new_pictogram, PictogramSerializer)
     rescue ActionController::ParameterMissing
@@ -45,11 +47,19 @@ module Admin
     private
 
     def pictogram_params
-      params.require(:pictogram).permit(:description, :category_id)
+      params.require(:pictogram).permit(:description, :classifiable_id)
     end
 
     def pictogram
-      @pictogram ||= Pictogram.find(params[:id])
+      @pictogram ||= Pictogram.not_customs.find(params[:id])
+    end
+
+    def retrieve_pictograms
+      apply_scopes(Pictogram)
+        .not_customs
+        .ordered_by_description
+        .page(params[:page])
+        .per(params[:per_page])
     end
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_28_074028) do
+ActiveRecord::Schema.define(version: 2021_01_28_082752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,10 +78,11 @@ ActiveRecord::Schema.define(version: 2021_01_28_074028) do
 
   create_table "pictograms", force: :cascade do |t|
     t.string "description"
-    t.bigint "category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["category_id"], name: "index_pictograms_on_category_id"
+    t.boolean "is_custom", default: false
+    t.integer "classifiable_id"
+    t.string "classifiable_type"
   end
 
   create_table "routines", force: :cascade do |t|
@@ -124,5 +125,4 @@ ActiveRecord::Schema.define(version: 2021_01_28_074028) do
   add_foreign_key "folders", "users"
   add_foreign_key "pictogram_routines", "pictograms"
   add_foreign_key "pictogram_routines", "routines"
-  add_foreign_key "pictograms", "categories"
 end
