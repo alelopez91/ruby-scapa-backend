@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   namespace :v1 do
     resources :categories, only: [:index]
     resources :pictograms, only: [:index]
+    resources :routines, only: [:index, :show]
+
     resource :folder, only: [:show, :update]
     resources :custom_categories
     resources :custom_pictograms
