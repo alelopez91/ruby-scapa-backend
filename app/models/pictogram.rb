@@ -7,7 +7,7 @@ class Pictogram < ApplicationRecord
   has_many :routines, through: :pictogram_routines
 
   scope :ordered_by_description, -> { order(description: :asc) }
-  scope :by_category, ->(category_id) { where(category_id: category_id) }
+  scope :by_category, ->(category_id) { where(classifiable_id: category_id, classifiable_type: 'Category') }
   scope :customs, -> { where(is_custom: true) }
   scope :not_customs, -> { where(is_custom: false) }
 end
