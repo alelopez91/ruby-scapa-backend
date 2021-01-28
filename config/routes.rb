@@ -16,5 +16,6 @@ Rails.application.routes.draw do
     resource :folder, only: [:show, :update]
     resources :custom_categories
     resources :custom_pictograms
+    resources :remembrances
   end
 end

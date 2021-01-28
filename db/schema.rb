@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_28_082752) do
+ActiveRecord::Schema.define(version: 2021_01_28_102544) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,23 @@ ActiveRecord::Schema.define(version: 2021_01_28_082752) do
     t.string "classifiable_type"
   end
 
+  create_table "remembrance_pictograms", force: :cascade do |t|
+    t.bigint "remembrance_id", null: false
+    t.bigint "pictogram_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["pictogram_id"], name: "index_remembrance_pictograms_on_pictogram_id"
+    t.index ["remembrance_id"], name: "index_remembrance_pictograms_on_remembrance_id"
+  end
+
+  create_table "remembrances", force: :cascade do |t|
+    t.string "description"
+    t.bigint "folder_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["folder_id"], name: "index_remembrances_on_folder_id"
+  end
+
   create_table "routines", force: :cascade do |t|
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
@@ -125,4 +142,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_082752) do
   add_foreign_key "folders", "users"
   add_foreign_key "pictogram_routines", "pictograms"
   add_foreign_key "pictogram_routines", "routines"
+  add_foreign_key "remembrance_pictograms", "pictograms"
+  add_foreign_key "remembrance_pictograms", "remembrances"
+  add_foreign_key "remembrances", "folders"
 end

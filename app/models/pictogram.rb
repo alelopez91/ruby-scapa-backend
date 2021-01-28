@@ -5,6 +5,8 @@ class Pictogram < ApplicationRecord
 
   has_many :pictogram_routines
   has_many :routines, through: :pictogram_routines
+  has_many :remembrance_pictograms
+  has_many :remembrances, through: :remembrance_pictograms
 
   scope :ordered_by_description, -> { order(description: :asc) }
   scope :by_category, ->(category_id) { where(classifiable_id: category_id, classifiable_type: 'Category') }
