@@ -3,21 +3,23 @@ module V1
     has_scope :by_custom_category, only: :index, as: :custom_category_id
 
     def index
-      custom_pictograms = apply_scopes(CustomPictogram).ordered_by_description.page(params[:page]).per(params[:per_page])
+      custom_pictograms = retrieve_pictograms
 
-      render_successful_response(custom_pictograms, CustomPictogramSerializer)
+      render_successful_response(custom_pictograms, PictogramSerializer)
     end
 
     def show
-      render_successful_response(custom_pictogram, CustomPictogramSerializer)
+      render_successful_response(custom_pictogram, PictogramSerializer)
     rescue ActiveRecord::RecordNotFound
       render_not_found
     end
 
     def create
-      new_custom_pictogram = CustomPictogram.create!(custom_pictogram_params)
+      completed_params = custom_pictogram_params.merge!(classifiable_type: 'CustomCategory', is_custom: true)
 
-      render_successful_response(new_custom_pictogram, CustomPictogramSerializer)
+      new_custom_pictogram = Pictogram.create!(completed_params)
+
+      render_successful_response(new_custom_pictogram, PictogramSerializer)
     rescue ActionController::ParameterMissing
       render_bad_request
     rescue ActiveRecord::RecordInvalid
@@ -27,7 +29,7 @@ module V1
     def update
       custom_pictogram.update!(custom_pictogram_params)
 
-      render_successful_response(custom_pictogram, CustomPictogramSerializer)
+      render_successful_response(custom_pictogram, PictogramSerializer)
     rescue ActiveRecord::RecordNotFound
       render_not_found
     rescue ActiveRecord::RecordInvalid
@@ -37,7 +39,7 @@ module V1
     def destroy
       custom_pictogram.destroy!
 
-      render_successful_response(custom_pictogram, CustomPictogramSerializer)
+      render_successful_response(custom_pictogram, PictogramSerializer)
     rescue ActiveRecord::RecordNotFound
       render_not_found
     end
@@ -45,11 +47,19 @@ module V1
     private
 
     def custom_pictogram_params
-      params.require(:custom_pictogram).permit(:description, :custom_category_id)
+      params.require(:custom_pictogram).permit(:description, :classifiable_id)
     end
 
     def custom_pictogram
-      @custom_pictogram ||= CustomPictogram.find(params[:id])
+      @custom_pictogram ||= Pictogram.customs.find(params[:id])
+    end
+
+    def retrieve_pictograms
+      apply_scopes(Pictogram)
+        .customs
+        .ordered_by_description
+        .page(params[:page])
+        .per(params[:per_page])
     end
   end
 end

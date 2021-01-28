@@ -8,6 +8,7 @@ class Pictogram < ApplicationRecord
 
   scope :ordered_by_description, -> { order(description: :asc) }
   scope :by_category, ->(category_id) { where(classifiable_id: category_id, classifiable_type: 'Category') }
+  scope :by_custom_category, ->(category_id) { where(classifiable_id: category_id, classifiable_type: 'CustomCategory') }
   scope :customs, -> { where(is_custom: true) }
   scope :not_customs, -> { where(is_custom: false) }
 end
