@@ -57,6 +57,7 @@ module V1
     def retrieve_pictograms
       apply_scopes(Pictogram)
         .customs
+        .by_classifiable(current_folder.custom_categories)
         .ordered_by_description
         .page(params[:page])
         .per(params[:per_page])

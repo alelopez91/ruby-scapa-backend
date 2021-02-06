@@ -13,7 +13,7 @@ module V1
     end
 
     def create
-      new_custom_category = current_user.folder.custom_categories.create!(custom_category_params)
+      new_custom_category = current_folder.custom_categories.create!(custom_category_params)
 
       render_successful_response(new_custom_category, CustomCategorySerializer)
     rescue ActionController::ParameterMissing

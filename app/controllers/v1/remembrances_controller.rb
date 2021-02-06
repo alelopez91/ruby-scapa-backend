@@ -49,9 +49,5 @@ module V1
     def remembrance
       @remembrance ||= current_folder.remembrances.find(params[:id])
     end
-
-    def current_folder
-      current_user.folder
-    end
   end
 end

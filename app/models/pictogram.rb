@@ -13,4 +13,5 @@ class Pictogram < ApplicationRecord
   scope :by_custom_category, ->(category_id) { where(classifiable_id: category_id, classifiable_type: 'CustomCategory') }
   scope :customs, -> { where(is_custom: true) }
   scope :not_customs, -> { where(is_custom: false) }
+  scope :by_classifiable, ->(classifiable) { where(classifiable: classifiable) }
 end

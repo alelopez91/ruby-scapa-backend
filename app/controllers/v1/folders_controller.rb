@@ -23,8 +23,8 @@ module V1
     end
 
     def folder
-      raise ActiveRecord::RecordNotFound unless current_user.folder.present?
-      @folder ||= current_user.folder
+      raise ActiveRecord::RecordNotFound unless current_folder.present?
+      @folder ||= current_folder
     end
   end
 end
