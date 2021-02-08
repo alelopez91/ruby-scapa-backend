@@ -47,7 +47,7 @@ module V1
     private
 
     def custom_pictogram_params
-      params.require(:custom_pictogram).permit(:description, :classifiable_id)
+      params.require(:custom_pictogram).permit(:description, :classifiable_id, :image)
     end
 
     def custom_pictogram

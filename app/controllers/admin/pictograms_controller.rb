@@ -47,7 +47,7 @@ module Admin
     private
 
     def pictogram_params
-      params.require(:pictogram).permit(:description, :classifiable_id)
+      params.require(:pictogram).permit(:description, :classifiable_id, :image)
     end
 
     def pictogram
