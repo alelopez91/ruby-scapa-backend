@@ -15,5 +15,5 @@ class Pictogram < ApplicationRecord
   scope :not_customs, -> { where(is_custom: false) }
   scope :by_classifiable, ->(classifiable) { where(classifiable: classifiable) }
 
-  has_one_attached :image
+  has_one_base64_attached :image
 end

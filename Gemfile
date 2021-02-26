@@ -16,6 +16,7 @@ gem 'devise_token_auth'
 gem 'jsonapi-serializer'
 gem 'kaminari'
 gem 'has_scope'
+gem 'active_storage_base64'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
