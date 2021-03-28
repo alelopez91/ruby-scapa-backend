@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   namespace :v1 do
     resources :categories, only: [:index]
-    resources :pictograms, only: [:index]
+    resources :pictograms, only: [:index, :show]
     resources :routines, only: [:index, :show]
 
     resource :folder, only: [:show, :update]
