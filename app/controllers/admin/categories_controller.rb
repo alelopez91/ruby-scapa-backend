@@ -20,8 +20,8 @@ module Admin
       render_successful_response(new_category, CategorySerializer)
     rescue ActionController::ParameterMissing
       render_bad_request
-    rescue ActiveRecord::RecordInvalid
-      render_unprocessable_entity
+    rescue ActiveRecord::RecordInvalid => e
+      render_unprocessable_entity(e.message)
     end
 
     def update
@@ -30,8 +30,8 @@ module Admin
       render_successful_response(category, CategorySerializer)
     rescue ActiveRecord::RecordNotFound
       render_not_found
-    rescue ActiveRecord::RecordInvalid
-      render_unprocessable_entity
+    rescue ActiveRecord::RecordInvalid => e
+      render_unprocessable_entity(e.message)
     end
 
     def destroy

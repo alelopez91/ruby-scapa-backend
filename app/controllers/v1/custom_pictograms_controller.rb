@@ -22,8 +22,8 @@ module V1
       render_successful_response(new_custom_pictogram, PictogramSerializer)
     rescue ActionController::ParameterMissing
       render_bad_request
-    rescue ActiveRecord::RecordInvalid
-      render_unprocessable_entity
+    rescue ActiveRecord::RecordInvalid => e
+      render_unprocessable_entity(e.message)
     end
 
     def update
@@ -32,8 +32,8 @@ module V1
       render_successful_response(custom_pictogram, PictogramSerializer)
     rescue ActiveRecord::RecordNotFound
       render_not_found
-    rescue ActiveRecord::RecordInvalid
-      render_unprocessable_entity
+    rescue ActiveRecord::RecordInvalid => e
+      render_unprocessable_entity(e.message)
     end
 
     def destroy

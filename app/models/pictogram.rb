@@ -1,7 +1,7 @@
 class Pictogram < ApplicationRecord
   include PgSearch::Model
 
-  validates :description, presence: true
+  validates :description, presence: true, uniqueness: true
 
   belongs_to :classifiable, polymorphic: true
 

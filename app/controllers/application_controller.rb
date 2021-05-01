@@ -9,8 +9,8 @@ class ApplicationController < ActionController::API
     render status: :bad_request
   end
 
-  def render_unprocessable_entity
-    render status: :unprocessable_entity
+  def render_unprocessable_entity(message="Missing parameters")
+    render status: :unprocessable_entity, json: {error: "#{message}"}
   end
 
   def render_successful_response(object, serializer)

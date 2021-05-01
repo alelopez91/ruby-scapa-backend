@@ -1,7 +1,7 @@
 class Category < ApplicationRecord
   include PgSearch::Model
 
-  validates :description, presence: true
+  validates :description, presence: true, uniqueness: true
 
   has_many :pictograms, as: :classifiable, dependent: :destroy
 
