@@ -1,6 +1,7 @@
 module Admin
   class PictogramsController < BaseController
     has_scope :by_category, only: :index, as: :category_id
+    has_scope :by_description, only: :index
 
     def index
       pictograms = retrieve_pictograms

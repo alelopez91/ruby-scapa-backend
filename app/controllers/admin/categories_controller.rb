@@ -1,7 +1,9 @@
 module Admin
   class CategoriesController < BaseController
+    has_scope :by_description, only: :index
+
     def index
-      categories = Category.ordered_by_description.page(params[:page]).per(params[:per_page])
+      categories = retrieve_categories
 
       render_successful_response(categories, CategorySerializer)
     end
@@ -48,6 +50,13 @@ module Admin
 
     def category
       @category ||= Category.find(params[:id])
+    end
+
+    def retrieve_categories
+      apply_scopes(Category)
+        .ordered_by_description
+        .page(params[:page])
+        .per(params[:per_page])
     end
   end
 end

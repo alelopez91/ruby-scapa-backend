@@ -18,6 +18,7 @@ gem 'kaminari'
 gem 'has_scope'
 gem 'active_storage_base64'
 gem "aws-sdk-s3", require: false
+gem 'pg_search'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

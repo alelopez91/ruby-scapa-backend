@@ -1,4 +1,6 @@
 class Pictogram < ApplicationRecord
+  include PgSearch::Model
+
   validates :description, presence: true
 
   belongs_to :classifiable, polymorphic: true
@@ -14,6 +16,10 @@ class Pictogram < ApplicationRecord
   scope :customs, -> { where(is_custom: true) }
   scope :not_customs, -> { where(is_custom: false) }
   scope :by_classifiable, ->(classifiable) { where(classifiable: classifiable) }
+
+  pg_search_scope :by_description, against: :description, using: {
+                    tsearch: { prefix: true }
+                  }
 
   has_one_base64_attached :image
 end
