@@ -45,7 +45,7 @@ module Admin
     private
 
     def category_params
-      params.require(:category).permit(:description)
+      params.require(:category).permit(:description, image: [:data, :filename])
     end
 
     def category

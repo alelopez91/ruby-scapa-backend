@@ -10,4 +10,6 @@ class Category < ApplicationRecord
   pg_search_scope :by_description, against: :description, using: {
                     tsearch: { prefix: true }
                   }
+
+  has_one_base64_attached :image
 end

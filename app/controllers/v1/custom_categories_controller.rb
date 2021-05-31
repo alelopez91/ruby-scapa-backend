@@ -43,7 +43,7 @@ module V1
     private
 
     def custom_category_params
-      params.require(:custom_category).permit(:description)
+      params.require(:custom_category).permit(:description, image: [:data, :filename])
     end
 
     def custom_category
