@@ -1,0 +1,66 @@
+---
+es:
+  activerecord:
+    models:
+      admin_user:
+        one: Administrador
+        other: Administradores
+      category:
+        one: Categoría
+        other: Categorías
+      custom_category:
+        one: Categoría Personal
+        other: Categorías Personales
+      folder:
+        one: Carpeta
+        other: Carpetas
+      pictogram:
+        one: Pictograma
+        other: Pictogramas
+      remembrance:
+        one: Recuerdo
+        other: Recuerdos
+      routine:
+        one: Rutina
+        other: Rutinas
+      user:
+        one: Usuario
+        other: Usuarios
+    attributes:
+      admin_user:
+        created_at: Creado el
+        email: Email
+        password: Contraseña
+        updated_at: Modificado el
+      category:
+        created_at: Creado el
+        description: Descripción
+        image_url: URL de imagen
+        updated_at: Modificado el
+      custom_category:
+        created_at: Creado el
+        description: Descripción
+        image_url: URL de imagen
+        updated_at: Modificado el
+      folder:
+        created_at: Creado el
+        enable_voice_playback: Activar reproducción por voz
+        updated_at: Modificado el
+      pictogram:
+        created_at: Creado el
+        description: Descripción
+        image_url: URL de imagen
+        updated_at: Modificado el
+      remembrance:
+        created_at: Creado el
+        description: Descripción
+        updated_at: Modificado el
+      routine:
+        created_at: Creado el
+        description: Descripción
+        updated_at: Modificado el
+      user:
+        created_at: Creado el
+        email: Email
+        password: Contraseña
+        updated_at: Modificado el
