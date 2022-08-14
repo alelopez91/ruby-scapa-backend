@@ -18,4 +18,8 @@ Rails.application.routes.draw do
     resources :custom_pictograms
     resources :remembrances
   end
+
+  namespace :guest do
+    resources :pictograms, only: [:index, :show]
+  end
 end
