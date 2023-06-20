@@ -21,6 +21,7 @@ gem "aws-sdk-s3", require: false
 gem 'pg_search'
 gem 'rails-i18n'
 gem 'devise-i18n'
+gem "minitest-rails", "~> 6.0"
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

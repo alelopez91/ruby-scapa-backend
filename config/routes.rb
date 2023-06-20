@@ -22,4 +22,7 @@ Rails.application.routes.draw do
   namespace :guest do
     resources :pictograms, only: [:index, :show]
   end
+
+  namespace :tutor do
+  end
 end
