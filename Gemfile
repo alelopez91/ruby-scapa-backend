@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.0'
+ruby '3.2.2'
 
 gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
 gem 'pg'
@@ -22,6 +22,7 @@ gem 'pg_search'
 gem 'rails-i18n'
 gem 'devise-i18n'
 gem "minitest-rails", "~> 6.0"
+gem 'psych'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

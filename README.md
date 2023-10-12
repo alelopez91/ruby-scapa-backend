@@ -1,24 +1,19 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Fill env vars
 
-Things you may want to cover:
+- Using `.env.sample` as base, create a new file `.env` and setup the env vars values
 
-* Ruby version
+## Build and run project
 
-* System dependencies
+```
+docker-compose build
+docker-compose up
+```
 
-* Configuration
+## Seed the database
 
-* Database creation
+- Get the running container id `docker-compose ps`
+- Connect to the container `docker exec -it <container-name> /bin/bash`
+- Inside the container run `bundle exec rake db:seed`
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
